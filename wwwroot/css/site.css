@@ -1,0 +1,54 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+.image-text-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    text-align: left;
+}
+
+.image-section {
+    margin-right: 20px; 
+}
+
+    .image-section img {
+        width: 300px; 
+        height: auto; 
+    }
+
+.text-section {
+    max-width: 700px; 
+    line-height: 1.6; 
+}
+
+/*   sekcja podstrony Kontakt   */
+.contact-header {
+    color: #4CAF50;
+}
+
+.contact-text {
+    font-size: 16px;
+    line-height: 1.5;
+}
