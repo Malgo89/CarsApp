@@ -5,29 +5,59 @@
     ViewData["Title"] = "Dodaj samochód do bazy";
 }
 
-<p>Wprowadź dane samochodu:</p>
+<h1 class="text-center mb-4">Dodaj samochód do bazy</h1>
 
-<form method="post" enctype="multipart/form-data">
-    <div class="mb-3">
-        <label for="Brand" class="form-label">Marka:</label>
-        <input asp-for="Car!.Brand" class="form- col-md-2" />
-    </div>
-    <div class="mb-3">
-        <label for="Model" class="form-label">Model:</label>
-        <input asp-for="Car!.Model" class="form- col-md-2" />
-    </div>
-    <div class ="mb-3">
-        <label for="Year" class="form-label">Rok Produkcji:</label>
-        <input asp-for="Car!.Year" class="form- col-md-2" />
-    </div>
-    <div class="mb-3">
-        <label for="Capacity" class="form-label">Ilość miejsc poza kierowcą:</label>
-        <input asp-for="Car!.Capacity" class="form- col-md-1" />
-    </div>
-    <div class="mb-3">
-        <label for="Image" class="form-label">Dodaj zdjęcie:</label>
-        <input type="file" name="file" class="form-control" />
-    </div>
-    <input type="submit" value="Dodaj" />
-</form>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <form method="post" enctype="multipart/form-data">
+                <!-- Marka -->
+                <div class="mb-3">
+                    <label for="Brand" class="form-label">Marka:</label>
+                    <input asp-for="Car!.Brand" class="form-control" />
+                    <span asp-validation-for="Car.Brand" class="text-danger"></span>
+                </div>
 
+                <!-- Model -->
+                <div class="mb-3">
+                    <label for="Model" class="form-label">Model:</label>
+                    <input asp-for="Car!.Model" class="form-control" />
+                    <span asp-validation-for="Car.Model" class="text-danger"></span>
+                </div>
+
+                <!-- Rok produkcji -->
+                <div class="mb-3">
+                    <label for="Year" class="form-label">Rok Produkcji:</label>
+                    <input asp-for="Car!.Year" class="form-control" type="number" min="1900" max="2100" />
+                    <span asp-validation-for="Car.Year" class="text-danger"></span>
+                </div>
+
+                <!-- Pasażerowie -->
+                <div class="mb-3">
+                    <label for="Capacity" class="form-label">Ilość miejsc poza kierowcą:</label>
+                    <input asp-for="Car!.Capacity" class="form-control" type="number" min="1" />
+                    <span asp-validation-for="Car.Capacity" class="text-danger"></span>
+                </div>
+
+                <!-- Zdjęcie -->
+                <div class="mb-3">
+                    <label for="Image" class="form-label">Dodaj zdjęcie:</label>
+                    <input type="file" name="file" class="form-control" />
+                    <span asp-validation-for="Car.ImagePath" class="text-danger"></span>
+                </div>
+
+                <!-- Przyciski -->
+                <div class="d-flex justify-content-between">
+                    <a asp-page="./Index" class="btn btn-secondary">Powrót</a>
+                    <input type="submit" value="Dodaj" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

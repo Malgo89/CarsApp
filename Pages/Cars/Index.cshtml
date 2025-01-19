@@ -5,45 +5,66 @@
     ViewData["Title"] = "Nasze samochody";
 }
 
-<h1>Nasze samochody</h1>
-<form method="post">
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Marka</th>
-                <th>Model</th>
-                <th>Rok</th>
-                <th>Pasa¿erów</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @if (Model.Cars != null)
-            {
-            foreach (var car in Model.Cars)
-            {
-            <tr>
-                <td> @car.Brand </td>
-                <td> @car.Model </td>
-                <td> @car.Year </td>
-                <td> @car.Capacity </td>
-                <td>
-                            @if (!string.IsNullOrEmpty(car.ImagePath))
-                            {
-                                <img src="~/@car.ImagePath" alt="@car.Brand @car.Model" width="100" />
-                            }
-                            else
-                            {
-                                <span>No Image</span>
-                            }
-                </td>
-                <td>
-                    <a asp-page="./Reserve" asp-route-id="@car.Id">Rezerwuj</a>
-                </td>
-            </tr>
-            }
-            }
-        </tbody>
-    </table>
+<h1 class="text-center mb-4">Nasze samochody</h1>
 
-</form>
+<div class="container">
+    <div class="row justify-content-center">
+        @if (Model.Cars != null && Model.Cars.Any())
+
+        {
+
+            foreach (var car in Model.Cars)
+
+            {
+                <div class="col-12 col-md-8 col-lg-6 mb-4">
+                    <div class="card bg-dark text-light shadow rounded" style="max-width: 500px; margin: 0 auto; border-radius: 15px;">
+                        <!-- Marka i Model -->
+                        <div class="card-header bg-primary text-light text-center" style="border-top-left-radius: 15px; border-top-right-radius: 15px;">
+                            <h5 class="mb-0">@car.Brand @car.Model</h5>
+                        </div>
+
+                        <!-- Zdjêcie lub Ikona Braku Zdjêcia -->
+                        @if (string.IsNullOrEmpty(car.ImagePath))
+
+                        {
+                            <div class="card-img-top rounded-0 d-flex justify-content-center align-items-center" style="height: 300px; background-color: #ccc; border-bottom: 2px solid #fff;">
+                                <i class="fas fa-image" style="font-size: 50px; color: #888;"></i>
+                                <p class="text-muted mt-2" style="font-size: 16px;">Brak zdjêcia</p>
+                            </div>
+                        }
+
+                        else
+
+                        {
+                            <img src="~/@car.ImagePath" alt="@car.Brand @car.Model"
+                                 class="card-img-top rounded-0"
+                                 style="height: 300px; width: 100%; object-fit: contain; border-bottom: none;">
+                        }
+
+                        <!-- Dane i Akcja -->
+                        <div class="card-body">
+                            <p class="mb-2">
+                                <strong>Rok:</strong> @car.Year<br />
+                                <strong>Pasa¿erów:</strong> @car.Capacity
+                            </p>
+                            <div class="d-flex justify-content-end">
+                                <a asp-page="./Reserve" asp-route-id="@car.Id" class="btn btn-success btn-sm">Rezerwuj</a>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+
+        }
+
+        else
+
+        {
+            <div class="col-12 text-center">
+                <p class="text-muted">Brak dostêpnych samochodów.</p>
+            </div>
+        }
+    </div>
+</div>
+

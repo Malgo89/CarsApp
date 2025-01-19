@@ -1,3 +1,4 @@
+using CarsApp.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace CarsApp.Data
@@ -10,5 +11,6 @@ namespace CarsApp.Data
         }
 
         public virtual DbSet<CarsApp.Models.Car> Cars { get; set; }
+        public virtual DbSet<Reservation> Reservations { get; set; }
     }
 }

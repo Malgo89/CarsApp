@@ -4,16 +4,21 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - CarsApp</title>
-   
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" /> 
-    <link rel="stylesheet" href="~/CarsApp.styles.css" asp-append-version="true" />
-    <link href="https://stackpath.bootstrapcdn.com/bootswatch/5.3.3/cerulean/bootstrap.min.css" rel="stylesheet">
-     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />   
+    <link rel="stylesheet" href="~/css/bootstrap.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+   @*  Calendar *@
+
+        <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+
+
 
 </head>
-<body>
+<body style="padding-top: 4.5rem;">
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-lg fixed-top bg-primary" data-bs-theme="dark">
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-page="/Index">Kamperownia</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -23,35 +28,41 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Cars/Index">Zarezerwuj kampera</a>
+                            <a class="nav-link text-light" asp-area="" asp-page="/Cars/Index">Zarezerwuj kampera</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Admin/Index">Panel administratora</a>
+                            <a class="nav-link text-light" asp-area="" asp-page="/Contact/Index">Kontakt</a>
                         </li>
+                    </ul>
+                    <ul class="navbar-nav ms-auto">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Contact/Index">Kontakt</a>
+                            <a class="nav-link text-light" asp-area="" asp-page="/Admin/Index">Panel administratora</a>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
+
+    <div class="d-flex flex-column min-vh-100">
+        <main role="main" class="pb-3 flex-grow-1">
             @RenderBody()
         </main>
-    </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2025 - Kamperownia - <a asp-area="" asp-page="/Privacy">Polityka prywatności</a>
-        </div>
-    </footer>
+        <footer class="border-top footer text-muted mt-auto" style="p">
+            <div class="container">
+                &copy; 2025 - Kamperownia - <a asp-area="" asp-page="/Privacy">Polityka prywatności</a>
+            </div>
+        </footer>
+    </div>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>
+
 </html>

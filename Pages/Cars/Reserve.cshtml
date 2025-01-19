@@ -5,5 +5,66 @@
     ViewData["Title"] = "Rezerwuj samochód";
 }
 
-<p>Skontaktuj się telefonicznie.</p>
+<h1 class="text-center mb-4">Rezerwuj samochód</h1>
 
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form method="post">
+                <input type="hidden" asp-for="Reservation.CarId" id="CarId" value="@ViewData["CarId"]" />
+
+            <div class="mb-3">
+                <label for="CarDetails" class="form-label">Samochód:</label>
+                <input type="text" class="form-control" id="CarDetails"
+                    value="@ViewData["CarBrand"] @ViewData["CarModel"] (@ViewData["CarYear"])"
+                   disabled />
+             </div>
+
+
+                <div class="mb-3">
+                    <label for="StartDate" class="form-label">Data rozpoczęcia:</label>
+                    <input asp-for="Reservation.StartDate" type="text" id="StartDate" class="form-control" readonly />
+                </div>
+
+                <div class="mb-3">
+                    <label for="EndDate" class="form-label">Data zakończenia:</label>
+                    <input asp-for="Reservation.EndDate" type="text" id="EndDate" class="form-control" readonly />
+                </div>
+
+                <div class="mb-3">
+                    <label for="CustomerName" class="form-label">Imię i nazwisko:</label>
+                    <input asp-for="Reservation.CustomerName" class="form-control" />
+                </div>
+
+                <div class="mb-3">
+                    <label for="CustomerPhone" class="form-label">Telefon:</label>
+                    <input asp-for="Reservation.CustomerPhone" class="form-control" />
+                </div>
+
+                <div class="text-center">
+                    <input type="submit" value="Zarezerwuj" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(function () {
+            $("#StartDate").datepicker({
+                dateFormat: 'yy-mm-dd',
+                minDate: 0,
+                onSelect: function (selectedDate) {
+                    var minDate = new Date(selectedDate);
+                    minDate.setDate(minDate.getDate() + 1); // Minimum one day gap
+                    $("#EndDate").datepicker("option", "minDate", minDate);
+                }
+            });
+            $("#EndDate").datepicker({
+                dateFormat: 'yy-mm-dd',
+                minDate: +1 // Minimum one day gap
+            });
+        });
+    </script>
+}
